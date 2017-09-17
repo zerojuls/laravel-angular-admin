@@ -15,6 +15,7 @@ class AddsApiTokenToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('api_token', 60)->unique()->nullable()->after('email');
+            $table->tinyInteger('state')->nullable()->after('remember_token');
         });
     }
 
@@ -27,6 +28,7 @@ class AddsApiTokenToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn([ 'api_token' ]);
+            $table->dropColumn([ 'state' ]);
         });
     }
 }
